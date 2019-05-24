@@ -14,15 +14,15 @@ class Home extends Component {
     }
 
     componentWillMount() {
-        var web3;
-        web3 = new Web3(new Web3.providers.HttpProvider("https://rpc-testnet.unification.io:443"));
-        var curr_block_no = web3.eth.blockNumber;
-        console.log(web3);
-        console.log(curr_block_no);
-        this.setState({
-          curr_block: curr_block_no
-        });
-      }
+        var web3 = new Web3(new Web3.providers.HttpProvider("https://rpc-testnet.unification.io:443"));
+        web3.eth.getBlockNumber(function (error, result) {
+            if (!error)
+                console.log(result)
+                this.setState({
+                    curr_block: result
+                });
+        }.bind(this));
+    }
 
     render() {
         return (
