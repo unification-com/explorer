@@ -1,0 +1,11 @@
+services:
+  proxy:
+    container_name: explorer-proxy
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    ports:
+    - published: 8080
+      target: 80
+
+version: '3.3'

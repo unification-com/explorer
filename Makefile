@@ -6,3 +6,6 @@ all:
 
 run:
 	docker run -it explorer /bin/bash
+
+up:
+	docker-compose -f Docker/docker-compose.yml up
