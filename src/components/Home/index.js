@@ -8,6 +8,38 @@ import './style.css';
 var web3 = new Web3(new Web3.providers.HttpProvider("https://rpc-testnet.unification.io:443"));
 var max_blocks = 10;
 
+
+export function addBlock(blockList, block) {
+    if (blockList.length >= max_blocks) {
+      blockList.pop()
+    }
+
+    blockList.unshift(block);
+
+    return blockList
+  }
+
+ export function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+    });
+  }
+
+ export function blocksToFetch(head, blockList) {
+    var local_head = blockList[0];
+    var ret = new Array();
+    if (local_head.number == head) {
+      return ret;
+    }
+
+    for (var i = local_head.number + 1; i <= head; i++) {
+      ret.push(i)
+    }
+    return ret;
+  }
+
+
 class Home extends Component {
     constructor(props) {
         super(props);
