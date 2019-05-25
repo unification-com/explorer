@@ -6,7 +6,7 @@ import './style.css';
 
 
 var web3 = new Web3(new Web3.providers.HttpProvider("https://rpc-testnet.unification.io:443"));
-
+var max_blocks = 10;
 
 class Home extends Component {
     constructor(props) {
@@ -18,16 +18,15 @@ class Home extends Component {
         }
     }
 
-    componentWillMount() {
+    fetchAll(){
         web3.eth.getBlockNumber(function (error, curr_block_no) {
             if (!error)
                 this.setState({
                     curr_block: curr_block_no
                 });
 
-                var max_blocks = 10;
-                const block_ids = this.state.block_ids.slice();
-                const block_hashes = this.state.block_hashes.slice();
+                const block_ids = [];
+                const block_hashes = [];
 
                 for (var i = 0; i < max_blocks; i++ , curr_block_no--) {
                     web3.eth.getBlock(curr_block_no, function (error, block) {
@@ -45,6 +44,16 @@ class Home extends Component {
                 }
         }.bind(this));
     }
+
+    componentWillMount() {
+        this.fetchAll();
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => {
+            this.fetchAll()
+        }, 15000);
+      }
 
     render() {
         var tableRows = [];
