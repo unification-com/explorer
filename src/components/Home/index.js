@@ -26,7 +26,7 @@ export function addBlock(blockList, block, max_blocks) {
   }
 
  export function blocksToFetch(head, blockList, block_list_length) {
-    var ret = new Array();
+    var ret = [];
 
     if (blockList.length == 0) {
         for (var i = head - block_list_length + 1; i <= head; i++) {
@@ -52,7 +52,7 @@ class Home extends Component {
         super(props);
         this.state = {
             curr_block: null,
-            blockList: new Array()
+            blockList: []
         }
     }
 
