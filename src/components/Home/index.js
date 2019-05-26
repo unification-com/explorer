@@ -40,8 +40,8 @@ export function addBlock(blockList, block, max_blocks) {
       return ret;
     }
 
-    for (var i = local_head.number + 1; i <= head; i++) {
-      ret.push(i)
+    for (var j = local_head.number + 1; j <= head; j++) {
+      ret.push(j)
     }
     return ret;
   }
