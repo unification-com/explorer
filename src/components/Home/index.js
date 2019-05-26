@@ -28,7 +28,7 @@ export function addBlock(blockList, block, max_blocks) {
  export function blocksToFetch(head, blockList, block_list_length) {
     var ret = [];
 
-    if (blockList.length == 0) {
+    if (blockList.length === 0) {
         for (var i = head - block_list_length + 1; i <= head; i++) {
             ret.push(i)
           }
@@ -36,7 +36,7 @@ export function addBlock(blockList, block, max_blocks) {
     }
     var local_head = blockList[0];
 
-    if (local_head.number == head) {
+    if (local_head.number === head) {
       return ret;
     }
 
