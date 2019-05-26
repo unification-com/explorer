@@ -9,13 +9,12 @@ var web3 = new Web3(new Web3.providers.HttpProvider("https://rpc-testnet.unifica
 var max_blocks = 10;
 
 
-export function addBlock(blockList, block) {
+export function addBlock(blockList, block, max_blocks) {
     if (blockList.length >= max_blocks) {
       blockList.pop()
     }
 
     blockList.unshift(block);
-
     return blockList
   }
 
@@ -26,9 +25,17 @@ export function addBlock(blockList, block) {
     });
   }
 
- export function blocksToFetch(head, blockList) {
-    var local_head = blockList[0];
+ export function blocksToFetch(head, blockList, block_list_length) {
     var ret = new Array();
+
+    if (blockList.length == 0) {
+        for (var i = head - block_list_length + 1; i <= head; i++) {
+            ret.push(i)
+          }
+        return ret;
+    }
+    var local_head = blockList[0];
+
     if (local_head.number == head) {
       return ret;
     }
@@ -86,6 +93,10 @@ class Home extends Component {
             this.fetchAll()
         }, 15000);
       }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
 
     render() {
         var tableRows = [];
