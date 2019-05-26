@@ -70,7 +70,7 @@ class Home extends Component {
                         if (error)
                             console.log(error);
                         else {
-                            var blockList = addBlock(this.state.blockList, block);
+                            var blockList = addBlock(this.state.blockList, block, max_blocks);
                             blockList = sortByKey(blockList, "number")
                             this.setState(
                                 {blockList: blockList}
