@@ -51,9 +51,8 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            block_ids: [],
-            block_hashes: [],
-            curr_block: null
+            curr_block: null,
+            blockList: new Array()
         }
     }
 
@@ -64,23 +63,21 @@ class Home extends Component {
                     curr_block: curr_block_no
                 });
 
-                const block_ids = [];
-                const block_hashes = [];
+                var xs = blocksToFetch(curr_block_no, this.state.blockList, max_blocks)
 
-                for (var i = 0; i < max_blocks; i++ , curr_block_no--) {
-                    web3.eth.getBlock(curr_block_no, function (error, block) {
+                xs.forEach(function (item, index) {
+                    web3.eth.getBlock(item, function (error, block) {
                         if (error)
                             console.log(error);
                         else {
-                            block_ids.push(block.number);
-                            block_hashes.push(block.hash);
-                            this.setState({
-                                block_ids: block_ids,
-                                block_hashes: block_hashes
-                            });
+                            var blockList = addBlock(this.state.blockList, block);
+                            blockList = sortByKey(blockList, "number")
+                            this.setState(
+                                {blockList: blockList}
+                            )
                         }
                     }.bind(this));
-                }
+                }.bind(this));
         }.bind(this));
     }
 
@@ -100,11 +97,11 @@ class Home extends Component {
 
     render() {
         var tableRows = [];
-        _.each(this.state.block_ids, (value, index) => {
+        _.each(this.state.blockList, (value, index) => {
             tableRows.push(
-                <tr key={this.state.block_hashes[index]}>
-                    <td className="tdCenter">{this.state.block_ids[index]}</td>
-                    <td><Link to={`/block/${this.state.block_hashes[index]}`}>{this.state.block_hashes[index]}</Link></td>
+                <tr key={this.state.blockList[index]["number"]}>
+                    <td className="tdCenter">{this.state.blockList[index]["number"]}</td>
+                    <td><Link to={`/block/${this.state.blockList[index]["number"]}`}>{this.state.blockList[index]["hash"]}</Link></td>
                 </tr>
             )
         });
