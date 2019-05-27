@@ -112,7 +112,7 @@ class Home extends Component {
         return (
             <div className="Home">
                 <div className="CurrentBlock">
-                    <div>
+                    <div style={{fontSize: '14px'}}>
                         Current Block:
                     </div>
                     <div>
