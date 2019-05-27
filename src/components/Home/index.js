@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Web3 from 'web3';
 import _ from 'lodash';
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './style.css';
 
 
@@ -11,40 +11,41 @@ var max_blocks = 10;
 
 export function addBlock(blockList, block, max_blocks) {
     if (blockList.length >= max_blocks) {
-      blockList.pop()
+        blockList.pop();
     }
 
     blockList.unshift(block);
     return blockList
-  }
+}
 
- export function sortByKey(array, key) {
-    return array.sort(function(a, b) {
-        var x = a[key]; var y = b[key];
+export function sortByKey(array, key) {
+    return array.sort(function (a, b) {
+        var x = a[key];
+        var y = b[key];
         return ((x > y) ? -1 : ((x < y) ? 1 : 0));
     });
-  }
+}
 
- export function blocksToFetch(head, blockList, block_list_length) {
+export function blocksToFetch(head, blockList, block_list_length) {
     var ret = [];
 
     if (blockList.length === 0) {
         for (var i = head - block_list_length + 1; i <= head; i++) {
             ret.push(i)
-          }
+        }
         return ret;
     }
     var local_head = blockList[0];
 
     if (local_head.number === head) {
-      return ret;
+        return ret;
     }
 
     for (var j = local_head.number + 1; j <= head; j++) {
-      ret.push(j)
+        ret.push(j)
     }
     return ret;
-  }
+}
 
 
 class Home extends Component {
@@ -56,28 +57,28 @@ class Home extends Component {
         }
     }
 
-    fetchAll(){
+    fetchAll() {
         web3.eth.getBlockNumber(function (error, curr_block_no) {
             if (!error)
                 this.setState({
                     curr_block: curr_block_no
                 });
 
-                var xs = blocksToFetch(curr_block_no, this.state.blockList, max_blocks)
+            var xs = blocksToFetch(curr_block_no, this.state.blockList, max_blocks)
 
-                xs.forEach(function (item, index) {
-                    web3.eth.getBlock(item, function (error, block) {
-                        if (error)
-                            console.log(error);
-                        else {
-                            var blockList = addBlock(this.state.blockList, block, max_blocks);
-                            blockList = sortByKey(blockList, "number")
-                            this.setState(
-                                {blockList: blockList}
-                            )
-                        }
-                    }.bind(this));
+            xs.forEach(function (item, index) {
+                web3.eth.getBlock(item, function (error, block) {
+                    if (error)
+                        console.log(error);
+                    else {
+                        var blockList = addBlock(this.state.blockList, block, max_blocks);
+                        blockList = sortByKey(blockList, "number")
+                        this.setState(
+                            {blockList: blockList}
+                        )
+                    }
                 }.bind(this));
+            }.bind(this));
         }.bind(this));
     }
 
@@ -89,7 +90,7 @@ class Home extends Component {
         this.interval = setInterval(() => {
             this.fetchAll()
         }, 15000);
-      }
+    }
 
     componentWillUnmount() {
         clearInterval(this.interval);
@@ -101,7 +102,9 @@ class Home extends Component {
             tableRows.push(
                 <tr key={this.state.blockList[index]["number"]}>
                     <td className="tdCenter">{this.state.blockList[index]["number"]}</td>
-                    <td><Link to={`/block/${this.state.blockList[index]["number"]}`}>{this.state.blockList[index]["hash"]}</Link></td>
+                    <td><Link
+                        to={`/block/${this.state.blockList[index]["number"]}`}>{this.state.blockList[index]["hash"]}</Link>
+                    </td>
                 </tr>
             )
         });
@@ -112,12 +115,14 @@ class Home extends Component {
                 Current Block: {this.state.curr_block}
                 <div>
                     <table>
-                        <thead><tr>
+                        <thead>
+                        <tr>
                             <th>Block No</th>
                             <th>Hash</th>
-                        </tr></thead>
+                        </tr>
+                        </thead>
                         <tbody>
-                            {tableRows}
+                        {tableRows}
                         </tbody>
                     </table>
                 </div>
