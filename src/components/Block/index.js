@@ -12,7 +12,8 @@ class Block extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      block: []
+      block: [],
+      transactions: []
     }
   }
 
@@ -26,7 +27,8 @@ class Block extends Component {
           block_hash: currBlockObj.hash,
           block_ts: Date(parseInt(this.state.block.timestamp, 10)).toString(),
           block_txs: parseInt(currBlockObj.transactions.slice().length, 10),
-          block: currBlockObj
+          block: currBlockObj,
+          transactions: currBlockObj.transactions,
         })
       }
     }.bind(this));
@@ -47,6 +49,8 @@ class Block extends Component {
 
   render() {
     const block = this.state.block;
+
+    let txRows = this.state.transactions;
 
     return (
       <div className="Block">
@@ -69,9 +73,24 @@ class Block extends Component {
             </tbody>
           </table>
         </div>
+        <h2>Trasnactions</h2>
+        <div>
+          <table>
+            <tbody>
+            {txRows.map((r, idx) => (
+              <tr key={r}>
+                <td>{idx}</td>
+                <td><Link to={`../tx/${r}`}>{r}</Link></td>
+              </tr>
+            ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
 
 }
+
+
 export default Block;

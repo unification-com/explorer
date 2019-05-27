@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Block from './../Block';
 import Home from './../Home';
+import Tx from './../Tx';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import './style.css';
 
@@ -17,6 +18,7 @@ class App extends Component {
                             <Link to="/">Home</Link>
                             <Route exact path="/" component={Home}/>
                             <Route path="/block/:blockHash" component={Block}/>
+                            <Route path="/tx/:tx" component={Tx}/>
                         </div>
                     </Router>
                 </div>
