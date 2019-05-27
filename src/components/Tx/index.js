@@ -330,5 +330,4 @@ class Tx extends Component {
 
 }
 
-
 export default Tx;
