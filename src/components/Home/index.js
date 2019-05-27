@@ -102,7 +102,7 @@ class Home extends Component {
             tableRows.push(
                 <tr key={this.state.blockList[index]["number"]}>
                     <td className="tdCenter">{this.state.blockList[index]["number"]}</td>
-                    <td><Link
+                    <td className="tdBody"><Link
                         to={`/block/${this.state.blockList[index]["number"]}`}>{this.state.blockList[index]["hash"]}</Link>
                     </td>
                 </tr>

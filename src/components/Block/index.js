@@ -54,18 +54,18 @@ class Block extends Component {
         <div>
           <table>
             <tbody>
-              <tr><td className="tdLabel">Height: </td><td>{this.state.block.number}</td></tr>
-              <tr><td className="tdLabel">Timestamp: </td><td>{this.state.block_ts}</td></tr>
-              <tr><td className="tdLabel">Transactions: </td><td>{this.state.block_txs}</td></tr>
-              <tr><td className="tdLabel">Hash: </td><td>{this.state.block.hash}</td></tr>
+              <tr><td className="tdLabel">Height: </td><td className="tdContents">{this.state.block.number}</td></tr>
+              <tr><td className="tdLabel">Timestamp: </td><td className="tdContents">{this.state.block_ts}</td></tr>
+              <tr><td className="tdLabel">Transactions: </td><td className="tdContents">{this.state.block_txs}</td></tr>
+              <tr><td className="tdLabel">Hash: </td><td className="tdContents">{this.state.block.hash}</td></tr>
               <tr><td className="tdLabel">Parent hash: </td>
               <td><Link to={`../block/${this.state.block.parentHash}`}>{this.state.block.parentHash}</Link></td></tr>
-              <tr><td className="tdLabel">Nonce: </td><td>{this.state.block.nonce}</td></tr>
-              <tr><td className="tdLabel">Size: </td><td>{this.state.block.size} bytes</td></tr>
-              <tr><td className="tdLabel">Gas Limit: </td><td>{block.gasLimit}</td></tr>
-              <tr><td className="tdLabel">Gas Used: </td><td>{block.gasUsed}</td></tr>
-              <tr><td className="tdLabel">Sha3Uncles: </td><td>{block.sha3Uncles}</td></tr>
-              <tr><td className="tdLabel">Extra data: </td><td>{block.extraData}</td></tr>
+              <tr><td className="tdLabel">Nonce: </td><td className="tdContents">{this.state.block.nonce}</td></tr>
+              <tr><td className="tdLabel">Size: </td><td className="tdContents">{this.state.block.size} bytes</td></tr>
+              <tr><td className="tdLabel">Gas Limit: </td><td className="tdContents">{block.gasLimit}</td></tr>
+              <tr><td className="tdLabel">Gas Used: </td><td className="tdContents">{block.gasUsed}</td></tr>
+              <tr><td className="tdLabel">Sha3Uncles: </td><td className="tdContents">{block.sha3Uncles}</td></tr>
+              <tr><td className="tdLabel">Extra data: </td><td className="tdContents">{block.extraData}</td></tr>
             </tbody>
           </table>
         </div>

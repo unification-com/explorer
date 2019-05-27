@@ -16,3 +16,11 @@ th, td {
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
+.tdCenter {
+    width: 100px
+}
+
+.tdBody {
+    width: 700px;
+}

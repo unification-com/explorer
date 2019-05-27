@@ -1,0 +1,11 @@
+
+
+.tdLabel {
+    max-width: 100px;
+}
+
+.tdContents {
+    max-width: 600px;
+    word-wrap: break-word;
+}
+
