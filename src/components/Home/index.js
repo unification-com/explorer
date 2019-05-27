@@ -6,7 +6,7 @@ import './style.css';
 
 
 var web3 = new Web3(new Web3.providers.HttpProvider("https://rpc-testnet.unification.io:443"));
-var max_blocks = 10;
+var max_blocks = 15;
 
 
 export function addBlock(blockList, block, max_blocks) {
