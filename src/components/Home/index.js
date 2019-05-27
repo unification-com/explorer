@@ -111,8 +111,15 @@ class Home extends Component {
 
         return (
             <div className="Home">
-                <h2>Home</h2>
-                Current Block: {this.state.curr_block}
+                <div className="CurrentBlock">
+                    <div>
+                        Current Block:
+                    </div>
+                    <div>
+                        {this.state.curr_block}
+                    </div>
+                </div>
+
                 <div>
                     <table>
                         <thead>
