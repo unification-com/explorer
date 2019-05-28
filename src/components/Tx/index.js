@@ -61,18 +61,20 @@ class Tx extends Component {
   }
 
   componentWillMount() {
-    // Get the block hash from URL arguments (defined by Route pattern)
-    var tx = this.props.match.params.tx;
+    // Get the tx hash from URL arguments (defined by Route pattern)
+    let tx = this.props.match.params.tx;
     this.getLatestBlock();
     this.getTxState(tx);
     this.getTxReceipt(tx);
   }
 
   componentWillReceiveProps(nextProps) {
-    var tx_old = this.props.match.params.tx;
-    var tx_new = nextProps.match.params.tx;
+    let tx_old = this.props.match.params.tx;
+    let tx_new = nextProps.match.params.tx;
     if (tx_old !== tx_new)
+    this.getLatestBlock();
     this.getTxState(tx_new);
+    this.getTxReceipt(tx_new);
   }
 
   render() {
