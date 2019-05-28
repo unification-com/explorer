@@ -12,6 +12,7 @@ class App extends Component {
                 <div className="App-header">
                     <h2>UND Block Explorer</h2>
                 </div>
+
                 <div className="App-nav">
                     <Router>
                         <div>
@@ -22,6 +23,8 @@ class App extends Component {
                         </div>
                     </Router>
                 </div>
+
+                <div className="App-footer">Git SHA: {process.env.REACT_APP_GIT_SHA}</div>
             </div>
         );
     }

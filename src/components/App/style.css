@@ -18,3 +18,9 @@
     color: #61dafb;
 }
 
+.App-footer {
+    font-size: calc(10px);
+    text-align: center;
+    margin-top: 10px;
+    height: 20px;
+}
