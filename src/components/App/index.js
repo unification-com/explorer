@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Address from './../Address';
 import Block from './../Block';
 import Home from './../Home';
 import Tx from './../Tx';
@@ -20,6 +21,7 @@ class App extends Component {
                             <Route exact path="/" component={Home}/>
                             <Route path="/block/:blockHash" component={Block}/>
                             <Route path="/tx/:tx" component={Tx}/>
+                            <Route path="/address/:address" component={Address}/>
                         </div>
                     </Router>
                 </div>
