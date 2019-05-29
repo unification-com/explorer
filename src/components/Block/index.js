@@ -73,7 +73,7 @@ class Block extends Component {
             </tbody>
           </table>
         </div>
-        <h2>Trasnactions</h2>
+        <h2>Transactions</h2>
         <div>
           <table>
             <tbody>
