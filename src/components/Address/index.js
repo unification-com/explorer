@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './style.css';
 import Web3 from 'web3';
-import { MAINCHAIN_ABIS } from '../../constants'
+import {MAINCHAIN_ABIS} from '../../constants'
 
 var web3 = new Web3(new Web3.providers.HttpProvider("https://rpc-testnet.unification.io:443"));
 
@@ -21,9 +21,9 @@ class Address extends Component {
   }
 
   getBalance(address) {
-      web3.eth.getBalance(address, function (error, balance) {
+    web3.eth.getBalance(address, function (error, balance) {
       if (error)
-          console.log(error);
+        console.log(error);
       else {
         this.setState({
           balance: balance,
@@ -35,9 +35,9 @@ class Address extends Component {
   getCode(address) {
     web3.eth.getCode(address, function (error, code) {
       if (error)
-          console.log(error);
+        console.log(error);
       else {
-        if(code !== '0x') {
+        if (code !== '0x') {
           this.setState({
             code: code,
             abi: MAINCHAIN_ABIS[address],
@@ -55,7 +55,7 @@ class Address extends Component {
   getTransactionCount(address) {
     web3.eth.getTransactionCount(address, function (error, txCount) {
       if (error)
-          console.log(error);
+        console.log(error);
       else {
         this.setState({
           txCount: txCount,
@@ -79,9 +79,9 @@ class Address extends Component {
     let address_old = this.props.match.params.address;
     let address_new = nextProps.match.params.address;
     if (address_old !== address_new)
-    this.setState({
-      address: address_new,
-    })
+      this.setState({
+        address: address_new,
+      })
     this.getBalance(address_new);
     this.getCode(address_new);
     this.getTransactionCount(address_new);
@@ -96,15 +96,15 @@ class Address extends Component {
     const txCount = this.state.txCount;
     let code_row = null;
 
-    if(type === 'contract') {
-        code_row = (
-          <tr>
-            <td className="tdLabel">Code: </td>
-            <td className="tdContents">
-              {code}
-            </td>
-          </tr>
-        )
+    if (type === 'contract') {
+      code_row = (
+        <tr>
+          <td className="tdLabel">Code:</td>
+          <td className="tdContents">
+            {code}
+          </td>
+        </tr>
+      )
     }
 
     return (
@@ -113,31 +113,31 @@ class Address extends Component {
         <div>
           <table>
             <tbody>
-              <tr>
-                <td className="tdLabel">Balance: </td>
-                <td className="tdContents">
-                  {balance}
-                </td>
-              </tr>
-              <tr>
-                <td className="tdLabel">Balance UND: </td>
-                <td className="tdContents">
-                  {balance_und} UND
-                </td>
-              </tr>
-              <tr>
-                <td className="tdLabel">Type: </td>
-                <td className="tdContents">
-                  {type}
-                </td>
-              </tr>
-              <tr>
-                <td className="tdLabel">Tx count: </td>
-                <td className="tdContents">
-                  {txCount}
-                </td>
-              </tr>
-              {code_row}
+            <tr>
+              <td className="tdLabel">Balance:</td>
+              <td className="tdContents">
+                {balance}
+              </td>
+            </tr>
+            <tr>
+              <td className="tdLabel">Balance UND:</td>
+              <td className="tdContents">
+                {balance_und} UND
+              </td>
+            </tr>
+            <tr>
+              <td className="tdLabel">Type:</td>
+              <td className="tdContents">
+                {type}
+              </td>
+            </tr>
+            <tr>
+              <td className="tdLabel">Tx count:</td>
+              <td className="tdContents">
+                {txCount}
+              </td>
+            </tr>
+            {code_row}
             </tbody>
           </table>
         </div>
