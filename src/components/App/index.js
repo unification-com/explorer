@@ -10,8 +10,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="App-search">
+          <input type="text" id="search" name="search"
+                 placeholder="search for address..."/>
+        </div>
         <div className="App-header">
-          <h2>UND Block Explorer</h2>
+          <h2>UND BLOCK EXPLORER</h2>
         </div>
 
         <div className="App-nav">
