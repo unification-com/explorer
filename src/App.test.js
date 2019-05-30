@@ -27,7 +27,7 @@ function insertBlocks(currentHead, upto, max_blocks) {
   for (var i = 0; i < upto; i++) {
     var block = generateTestBlock(i);
 
-    blockList = addBlock(blockList, block,)
+    blockList = addBlock(blockList, block, 5)
     blockList = sortByKey(blockList, "number")
   }
 
