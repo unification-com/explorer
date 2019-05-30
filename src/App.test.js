@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import { addBlock, sortByKey, blocksToFetch } from './components/Home';
+import {addBlock, sortByKey, blocksToFetch} from './components/Home';
 
 
 var baseNumber = 50169;
@@ -9,7 +9,7 @@ var baseNumber = 50169;
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<App/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 
@@ -27,7 +27,7 @@ function insertBlocks(currentHead, upto, max_blocks) {
   for (var i = 0; i < upto; i++) {
     var block = generateTestBlock(i);
 
-    blockList = addBlock(blockList, block, )
+    blockList = addBlock(blockList, block, 5)
     blockList = sortByKey(blockList, "number")
   }
 
